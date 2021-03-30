@@ -11,6 +11,7 @@ $(() => {
   `);
 
   var renderTodo = (todo) => {
+  // console.log('the template from renderTodo--->', template({id: todo.id, text: todo.name}))
     return template({id: todo.id, text: todo.name});
   };
 
@@ -19,7 +20,12 @@ $(() => {
   };
 
   var changeTodo = (id, todo) => {
-    $(`#todos [data-id=${id}]`).replaceWith(renderTodo(todo));
+    console.log('in change todo -->', renderTodo(todo));
+    console.log('in change todo ID-->', id);
+    $(`#todos [data-id= "${id}]"`).replaceWith(renderTodo(todo));
+    // $('#todos').empty();
+    // $('#todos').append(renderTodo(todo));
+
   };
 
   var removeTodo = (id) => {

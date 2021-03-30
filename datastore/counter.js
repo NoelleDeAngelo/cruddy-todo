@@ -11,7 +11,7 @@ var counter = 0;
 //   }
 
 // });
-console.log('counter from the top------', counter);
+//console.log('counter from the top------', counter);
 //console.log('exports.counterFile----', exports.counterFile)
 
 // Private helper functions ////////////////////////////////////////////////////
@@ -46,9 +46,7 @@ const writeCounter = (count, callback) => {
     }
   });
 };
-
 // Public API - Fix this function //////////////////////////////////////////////
-
 exports.getNextUniqueId = (cb) => {
 
 
@@ -57,21 +55,19 @@ exports.getNextUniqueId = (cb) => {
     writeCounter(counter1, (err, counterString) => {
       cb(err, counterString);
     });
-
   });
-  // console.log('temp',temp)
-  // counter = counter + 1;
-  // return zeroPaddedNumber(counter);
-
-
-  // //1. read counter from fs
-  // var oldCounter = readCounter();
-  // //2.increment the counter
-  // var newCounter = oldCounter + 1;
-  // //3. write it back on fs
-  // writeCounter(newCounter);
-
 };
+// console.log('temp',temp)
+// counter = counter + 1;
+// return zeroPaddedNumber(counter);
+
+
+// //1. read counter from fs
+// var oldCounter = readCounter();
+// //2.increment the counter
+// var newCounter = oldCounter + 1;
+// //3. write it back on fs
+// writeCounter(newCounter);
 
 
 
