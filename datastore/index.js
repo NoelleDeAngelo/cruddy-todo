@@ -5,19 +5,40 @@ const counter = require('./counter');
 
 var items = {};
 
+
 // Public API - Fix these CRUD functions ///////////////////////////////////////
 
 exports.create = (text, callback) => {
-  var id = counter.getNextUniqueId();
-  items[id] = text;
-  callback(null, { id, text });
+  counter.getNextUniqueId((err, num) => {
+    fs.writeFile(path.join(exports.dataDir, `${num}.txt`), text, (err) => {
+      if (err) {
+        throw ('error writing todo');
+      } else {
+        console.log('todo saved as ' + num);
+      }
+    });
+  });
+
+
 };
 
 exports.readAll = (callback) => {
-  var data = _.map(items, (text, id) => {
-    return { id, text };
+  fs.readdir(exports.dataDir, (err, fileNames)=> {
+    if (err) {
+      throw ('error reading todolist');
+    } else {
+      var todos = [];
+      _.each(fileNames, (filename)=> {
+        var temp = {};
+        temp.name = filename;
+        temp.id = filename;
+        todos.push(temp);
+      });
+
+      callback(null, todos);
+    }
   });
-  callback(null, data);
+
 };
 
 exports.readOne = (id, callback) => {

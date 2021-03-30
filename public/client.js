@@ -11,7 +11,7 @@ $(() => {
   `);
 
   var renderTodo = (todo) => {
-    return template(todo);
+    return template({id: todo.id, text: todo.name});
   };
 
   var addTodo = (todo) => {
@@ -27,6 +27,7 @@ $(() => {
   };
 
   var addAllTodos = (todos) => {
+    console.log(todos);
     _.each(todos, (todo) => {
       addTodo(todo);
     });
